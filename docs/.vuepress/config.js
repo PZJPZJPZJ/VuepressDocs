@@ -7,8 +7,8 @@ import { catalogPlugin } from '@vuepress/plugin-catalog'
 export default defineUserConfig({
   lang: 'zn-CN',
 
-  title: 'VuePress',
-  description: 'My first VuePress Site',
+  title: 'PZJ',
+  description: 'PZJ VuePress Site',
 
   theme: defaultTheme({
     logo: 'https://vuejs.press/images/hero.png',
@@ -20,7 +20,7 @@ export default defineUserConfig({
       },
       {
         text: '教程',
-        children: ['/guide/'],
+        link: '/guide/',
       },
     ],
     sidebarDepth: 5,
