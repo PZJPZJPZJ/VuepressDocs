@@ -6,12 +6,10 @@ import { catalogPlugin } from '@vuepress/plugin-catalog'
 
 export default defineUserConfig({
   lang: 'zn-CN',
-
   title: 'PZJ',
   description: 'PZJ VuePress Site',
-
   theme: defaultTheme({
-    logo: 'https://vuejs.press/images/hero.png',
+    logo: 'https://avatars.githubusercontent.com/u/68857304',
     dest: "docs/dist",
     navbar: [
       {
@@ -25,9 +23,7 @@ export default defineUserConfig({
     ],
     sidebarDepth: 5,
   }),
-
   bundler: viteBundler(),
-  
   plugins: [
     searchProPlugin({
       // 配置选项
