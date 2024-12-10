@@ -9,4 +9,3 @@ node_modules
 # Binaries and temps
 .cache
 .temp
-dist

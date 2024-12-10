@@ -8,9 +8,10 @@ export default defineUserConfig({
   lang: 'zn-CN',
   title: 'PZJ',
   description: 'PZJ VuePress Site',
+  base: '/vuepressdocs/',
+  dest: 'docs/',
   theme: defaultTheme({
     logo: 'https://avatars.githubusercontent.com/u/68857304',
-    dest: "docs/dist",
     navbar: [
       {
         text: '首页',
