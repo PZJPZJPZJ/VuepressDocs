@@ -7,7 +7,7 @@ import { catalogPlugin } from '@vuepress/plugin-catalog'
 export default defineUserConfig({
   lang: 'zn-CN',
   title: 'PZJ',
-  description: 'PZJ VuePress Site',
+  description: 'A Simple Wiki Site',
   base: '/VuepressDocs/',
   dest: 'docs/',
   theme: defaultTheme({
