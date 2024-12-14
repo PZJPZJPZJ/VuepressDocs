@@ -1,4 +1,4 @@
-# Clash代理Mihomo核心
+# ClashMihomo代理核心配置
 ## 安装教程
 ### Windows
 将[配置文件](#常用配置文件)命名为config.yaml，修改proxy-providers的url为订阅地址，放在`C:\Users\Admin\.config\mihomo`目录中,运行mihomo.exe
@@ -18,34 +18,96 @@ services:
 
 将[配置文件](#常用配置文件)命名为config.yaml，修改proxy-providers的url为订阅地址，放在`/root/.config/mihomo`目录中
 ## 连接方式
-### HTTP/HTTPS
-> 应用级TCP代理
+### HTTP/HTTPS：应用级TCP代理
+- 仅遵循HTTP代理应用可用
 
-非全局代理，仅遵循HTTP代理应用可用
+### Socks：应用级全局代理
+- 仅可连接Socks应用可用
 
-### Socks
-> 应用级全局代理
-
-全局代理，仅可连接Socks应用可用
-
-### Redir
-> 端口转发模式 TCP
+### Redir：端口转发模式 TCP
 ```shell
-# Linux配置转发TCP端口至Redir端口
+iptables -t nat -N CLASH
+iptables -t nat -A CLASH -d 0.0.0.0/8 -j RETURN
+iptables -t nat -A CLASH -d 10.0.0.0/8 -j RETURN
+iptables -t nat -A CLASH -d 127.0.0.0/8 -j RETURN
+iptables -t nat -A CLASH -d 169.254.0.0/16 -j RETURN
+iptables -t nat -A CLASH -d 172.16.0.0/12 -j RETURN
+iptables -t nat -A CLASH -d 192.168.0.0/16 -j RETURN
+iptables -t nat -A CLASH -d 224.0.0.0/4 -j RETURN
+iptables -t nat -A CLASH -d 240.0.0.0/4 -j RETURN
 
+iptables -t nat -A CLASH -p tcp -j REDIRECT --to-ports 7892
+iptables -t nat -A PREROUTING -p tcp -j CLASH
 ```
 
-### Tproxy
-> 透明网关模式 TCP/UDP
+### Tproxy：透明网关模式 TCP/UDP
+Linux 劫持网络数据包流量转发到 tproxy 端口
 ```shell
-# Linux配置透明网关防火墙规则
+# 将所有进入本机的 tcp/udp 数据包交给 tproxy
+iptables -t mangle -A PREROUTING -p tcp -j TPROXY --on-ip 127.0.0.1 --on-port 7893
+iptables -t mangle -A PREROUTING -p udp -j TPROXY --on-ip 127.0.0.1 --on-port 7893
 
+# IPv4 避免内网数据包死循环
+# 添加一条路由规则，对于 mark 为 1 的数据包，默认从 lo 设备出去
+ip rule add fwmark 1 table 100
+ip route add local 0.0.0.0/0 dev lo table 100
+
+# 添加一个新的链，用来判断本机出去的数据包是否需要经过代理
+iptables -t mangle -N CLASH
+iptables -t mangle -A CLASH -d 10.0.0.0/8 -j RETURN
+iptables -t mangle -A CLASH -d 127.0.0.0/8 -j RETURN
+iptables -t mangle -A CLASH -d 172.16.0.0/12 -j RETURN
+iptables -t mangle -A CLASH -d 192.168.0.0/16 -j RETURN
+iptables -t mangle -A CLASH -d 224.0.0.0/4 -j RETURN
+iptables -t mangle -A CLASH -d 255.255.255.255/32 -j RETURN
+iptables -t mangle -A CLASH -p tcp -j MARK --set-mark 1
+iptables -t mangle -A CLASH -p udp -j MARK --set-mark 1
+
+# 对于本机非 clash-meta 用户都启用透明代理
+iptables -t mangle -A OUTPUT -m owner ! --uid-owner clash-meta -j CLASH
+
+# IPv6 避免内网数据包死循环
+# 添加一条路由规则，对于 mark 为 1 的数据包，默认从 lo 设备出去
+ip -6 rule add fwmark 1 table 101
+ip -6 route add local ::/0 dev lo table 101
+
+# 添加一个新的链，用来判断本机出去的数据包是否需要经过代理
+ip6tables -t mangle -N CLASH6
+ip6tables -t mangle -A CLASH6 -d ::1/128 -j RETURN
+ip6tables -t mangle -A CLASH6 -d fc00::/7 -j RETURN
+ip6tables -t mangle -A CLASH6 -d ff00::/8 -j RETURN
+ip6tables -t mangle -A CLASH6 -d fe80::/10 -j RETURN
+ip6tables -t mangle -A CLASH6 -p tcp -j MARK --set-mark 1
+ip6tables -t mangle -A CLASH6 -p udp -j MARK --set-mark 1
+
+# 对于本机非 clash-meta 用户都启用透明代理
+ip6tables -t mangle -A OUTPUT -m owner ! --uid-owner clash-meta -j CLASH6
 ```
+完全删除上述规则
+```shell
+# 删除本机重路由规则
+ip rule del fwmark 1 table 100
+ip route del local 0.0.0.0/0 dev lo table 100
+iptables -t mangle -D OUTPUT -m owner ! --uid-owner clash-meta -j CLASH
+iptables -t mangle -F CLASH
+iptables -t mangle -X CLASH
+ip -6 rule del fwmark 1 table 101
+ip -6 route del local ::/0 dev lo table 101
+ip6tables -t mangle -D OUTPUT -m owner ! --uid-owner clash-meta -j CLASH6
+ip6tables -t mangle -F CLASH6
+ip6tables -t mangle -X CLASH6
 
-### TUN
-> 网卡模式 旁路网关模式
-
-全局代理，当Linux宿主机直接运行Mihomo，或Docker成功启用privileged特权模式，宿主系统会创建TUN网卡，自动识别出口网卡并拦截流量至Mihomo
+# 删除劫持到透明代理的规则
+iptables -t mangle -D PREROUTING -j CLASH_LAN
+iptables -t mangle -F CLASH_LAN
+iptables -t mangle -X CLASH_LAN
+ip6tables -t mangle -D PREROUTING -j CLASH6_LAN
+ip6tables -t mangle -F CLASH6_LAN
+ip6tables -t mangle -X CLASH6_LAN
+```
+### TUN：网卡模式 旁路网关模式
+- 当Linux宿主机直接运行Mihomo，或Docker成功启用privileged特权模式，宿主系统会创建TUN网卡，自动识别出口网卡并拦截流量至Mihomo
+- 当Windows以管理员权限运行Mihomo，系统会创建TUN网卡，自动代理本机所有流量
 
 ## 常用配置文件
 ```yaml
@@ -57,12 +119,12 @@ tproxy-port: 7894
 ipv6: true
 allow-lan: true
 lan-allowed-ips:
-- 0.0.0.0/0
+  - 0.0.0.0/0
 lan-disallowed-ips:
-- ::/0
-unified-delay: false
+  - ::/0
+unified-delay: true
 tcp-concurrent: true
-external-controller: 0.0.0.0:9090
+external-controller: 0.0.0.0:7880
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
@@ -131,7 +193,7 @@ dns:
 
 proxy-providers:
   provider:
-    url: https://example.com/clash
+    url: https://example.com
     type: http
     interval: 86400
     health-check:
@@ -142,7 +204,7 @@ proxy-providers:
 proxy-groups:
   - name: 默认
     type: fallback
-    proxies: [香港,台湾,日本,韩国,美国,新加坡,俄罗斯,卢森堡,专线]
+    proxies: [香港,台湾,日本,韩国,美国,英国,加拿大,新加坡,俄罗斯,专线]
     interval: 60
 
   - name: 专线
@@ -185,6 +247,20 @@ proxy-groups:
     exclude-filter: "(?i)专线"
     tolerance: 60
 
+  - name: 英国
+    type: url-test
+    include-all: true
+    filter: "(?i)英国"
+    exclude-filter: "(?i)专线"
+    tolerance: 60
+
+  - name: 加拿大
+    type: url-test
+    include-all: true
+    filter: "(?i)加拿大"
+    exclude-filter: "(?i)专线"
+    tolerance: 60
+
   - name: 新加坡
     type: url-test
     include-all: true
@@ -196,13 +272,6 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: "(?i)俄罗斯"
-    exclude-filter: "(?i)专线"
-    tolerance: 60
-
-  - name: 卢森堡
-    type: url-test
-    include-all: true
-    filter: "(?i)卢森堡"
     exclude-filter: "(?i)专线"
     tolerance: 60
 
