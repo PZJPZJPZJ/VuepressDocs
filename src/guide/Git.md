@@ -1,4 +1,4 @@
-# Git版本控制
+# Git:版本控制
 ## 安装配置
 1. 安装[Git](https://github.com/git-for-windows/git/releases)
 - 若下载Installer则直接按步骤安装

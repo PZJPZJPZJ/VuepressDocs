@@ -1,4 +1,4 @@
-# JetBrains激活工具
+# JaNetfilter:JetBrains激活工具
 ## 激活教程
 1. 将所有文件解压且激活后不能删除
 2. 运行scripts文件夹对应系统的install脚本

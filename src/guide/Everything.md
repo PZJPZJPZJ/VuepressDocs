@@ -1,4 +1,4 @@
-# 文件搜索工具
+# Everything:文件搜索工具
 ## 官方网站
 - https://www.voidtools.com/
 ## 文件说明
