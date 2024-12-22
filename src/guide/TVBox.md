@@ -1,4 +1,4 @@
-# TVBox嗅探播放器
+# TVBox:嗅探播放器
 ## 空壳下载
 - [影视](https://github.com/FongMi/Release)
 - [OK影视](https://github.com/lystv/fmapp)

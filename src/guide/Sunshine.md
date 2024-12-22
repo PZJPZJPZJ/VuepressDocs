@@ -16,3 +16,4 @@
 
 ## 控制端软件
 - [Moonlight Android](https://github.com/moonlight-stream/moonlight-android)
+- [Moonlight iOS](https://apps.apple.com/cn/app/moonlight-game-streaming/id1000551566)
