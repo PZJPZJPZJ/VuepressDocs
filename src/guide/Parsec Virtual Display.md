@@ -1,4 +1,4 @@
-# 虚拟显示器
+# Parsec Virtual Display:虚拟显示器
 ## 下载地址
 [Github](https://github.com/nomi-san/parsec-vdd/releases)
 ## 配合串流

@@ -1,4 +1,4 @@
-# Windows引导程序
+# Bootmgr:Windows引导程序
 ## 正式操作系统
 1. 使用工具编辑BOOT和EFI文件夹内的BCD文件
 2. 将设备启动类型切换为分区并编辑其他选项

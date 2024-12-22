@@ -1,4 +1,4 @@
-# 网络穿透工具
+# Lucky:网络穿透工具
 ```yaml
 services:
     lucky:

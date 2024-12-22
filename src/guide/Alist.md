@@ -1,4 +1,8 @@
-# 开源网盘
+# Alist:开源网盘
+## 官方地址
+- [官网](https://alist.nn.ci/)
+- [Github](https://github.com/AlistGo/alist)
+
 ## DockerCompose部署
 ```yaml
 services:

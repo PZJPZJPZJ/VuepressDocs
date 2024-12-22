@@ -1,4 +1,4 @@
-# VuePress静态Markdown网站生成器
+# VuePress:静态Markdown网站生成器
 ## 官方地址
 - [官方文档](https://vuepress.vuejs.org/)
 ## 配置教程

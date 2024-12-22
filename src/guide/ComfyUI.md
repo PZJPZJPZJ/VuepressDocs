@@ -1,4 +1,4 @@
-# StableDiffusion模块化工作流GUI
+# ComfyUI:StableDiffusion模块化工作流GUI
 ## 安装教程
 1. 部署[Git](https://github.com/git-for-windows/git/releases)
 - 若下载Installer则直接按步骤安装
@@ -22,3 +22,6 @@ git pull https://github.com/ltdrdata/ComfyUI-Manager.git
 ## 模型(models)
 
 ## 工作流
+
+## 推荐教程
+- https://github.com/602387193c/ComfyUI-wiki

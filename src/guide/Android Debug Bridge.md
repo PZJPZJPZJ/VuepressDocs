@@ -1,4 +1,4 @@
-# 安卓调试桥
+# Android Debug Bridge:安卓调试桥
 ## 服务状态
 ``` bash
 # 启动adb服务
