@@ -1,6 +1,6 @@
 # BeatSaber:节奏光剑
 ## 通用教程
-- https://bs.wdsky.top/
+- <https://bs.wdsky.top/>
 
 ## Quest版
 ### BMBF方案安装教程

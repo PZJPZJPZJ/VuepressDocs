@@ -9,8 +9,8 @@
 3. 访问ComfyUI
 - ComfyUI Desktop可直接从窗口使用
 - 两个版本均可浏览器访问[8000端口](http://localhost:8000)
-## 节点(custom_nodes)
-### ComfyUI-Manager(自定义节点管理)
+## custom_nodes(自定义节点)
+### [ComfyUI-Manager](https://github.com/ltdrdata/ComfyUI-Manager)(自定义节点管理)
 - ComfyUI Desktop自带
 - 使用Git命令手动安装
 ```shell
@@ -19,9 +19,13 @@ git pull https://github.com/ltdrdata/ComfyUI-Manager.git
 ```
 ### AIGODLIKE-COMFYUI-TRANSLATION(界面翻译)
 - 安装后需进入设置-AGL-Locale-AGLTranslation-langualge调整语言
+
 ## 模型(models)
+### CheckPoints
+- [StableDiffusion3](https://huggingface.co/stabilityai/stable-diffusion-3-medium/tree/main)
+- [NovelAI](magnet:?xt=urn:btih:5bde442da86265b670a3e5ea3163afad2c6f8ecc)
 
 ## 工作流
 
 ## 推荐教程
-- https://github.com/602387193c/ComfyUI-wiki
+- <https://github.com/602387193c/ComfyUI-wiki>

@@ -3,6 +3,9 @@
 - [OpenWrt](https://openwrt.org/)
 - [Github](https://github.com/openwrt/openwrt)
 
+## 插件包
+- [OpenClash](https://github.com/vernesong/OpenClash)
+
 ## [iStoreOS](https://www.istoreos.com/)
 ### 安装教程
 * 使用Rufus或BalenaEtcher直接写入硬盘

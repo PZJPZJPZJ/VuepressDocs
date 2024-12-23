@@ -89,5 +89,5 @@ apk add docker-cli
 apk add busybox-extras
 ```
 ## Windows拉取镜像工具
-[Python Docker Drag](https://github.com/NotGlop/docker-drag)
-[Go Dpull](https://gitee.com/wocaa/dpull/releases)
+- [Python Docker Drag](https://github.com/NotGlop/docker-drag)
+- [Go Dpull](https://gitee.com/wocaa/dpull/releases)

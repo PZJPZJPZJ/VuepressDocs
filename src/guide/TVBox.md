@@ -2,7 +2,7 @@
 ## 空壳下载
 - [影视](https://github.com/FongMi/Release)
 - [OK影视](https://github.com/lystv/fmapp)
-- [TVBox](https://github.com/o0HalfLife0o/TVBoxOSC)
+- [TVBox编译版本](https://github.com/o0HalfLife0o/TVBoxOSC)
 ## 源码地址
 - [影视源码](https://github.com/FongMi/TV)
 - [Takagen99源码](https://github.com/takagen99/Box)
