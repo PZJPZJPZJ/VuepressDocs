@@ -4,17 +4,21 @@
 ## Docker部署
 ```yaml
 services:
- homeassistant:
-   image: homeassistant/home-assistant:stable
-   container_name: homeassistant
-   privileged: true
-   environment:
-     TZ: Asia/Shanghai
-   restart: always
-   volumes:
-    - ./config:/config
-   ports:
-      - "8123:8123"
+  home-assistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant:stable
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: always
+    privileged: true
+    network_mode: host
 ```
+## 教程
+1. 使用DockerCompose部署
+2. 浏览器访问[8123端口](http://localhost:8123)
 ## 集成
 ### [Xiaomi Home](https://github.com/XiaoMi/ha_xiaomi_home)
