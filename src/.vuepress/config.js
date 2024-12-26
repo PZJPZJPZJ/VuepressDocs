@@ -1,7 +1,6 @@
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
-import { searchProPlugin } from "vuepress-plugin-search-pro"
 import { catalogPlugin } from '@vuepress/plugin-catalog'
 
 export default defineUserConfig({
@@ -26,9 +25,6 @@ export default defineUserConfig({
   }),
   bundler: viteBundler(),
   plugins: [
-    searchProPlugin({
-      // 配置选项
-    }),
     catalogPlugin({
       // 你的选项
     }),

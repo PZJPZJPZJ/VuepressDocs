@@ -11,5 +11,5 @@ actions:
     link: https://github.com/pzjpzjpzj
     type: secondary
 
-footer: MIT Licensed | Copyright © 2024 PZJ
+footer: MIT Licensed | Copyright © PZJ
 ---
