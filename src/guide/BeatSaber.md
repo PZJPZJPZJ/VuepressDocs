@@ -6,6 +6,8 @@
 ### BMBF方案安装教程
 1. 推荐通过[RuTracker](https://rutracker.net/forum/index.php)搜索下载1.28.0版本的BeatSaber
 2. 打开Quest的开发者模式并使用ADB装载BeatSaber安装包
+   - ADB安装命令`adb install beatsaber.apk`
+   - 可使用[File Manager](https://www.apkmirror.com/apk/file-manager-plus/file-manager-7/)进行APK管理和安装
 3. 同时使用ADB安装[BMBF](https://bmbf.dev/stable)模组安装程序
 4. 打开BMBF授权文件访问权限，然后点击Continue>Uninstall>Patch进行游戏修补
     - Quest需要在正常国际网络下完成

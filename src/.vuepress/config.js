@@ -26,7 +26,7 @@ export default defineUserConfig({
   bundler: viteBundler(),
   plugins: [
     catalogPlugin({
-      // 你的选项
+
     }),
   ],
 })

@@ -1,5 +1,5 @@
 # Clash:ClashPremium代理核心配置
-## DockerCLI部署
+## DockerCLI
 ```shell
 docker run -d --name clash --restart=always --net=host dreamacro/clash-premium
 ```

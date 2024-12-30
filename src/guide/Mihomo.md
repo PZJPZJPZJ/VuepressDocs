@@ -7,9 +7,8 @@
 ## 安装教程
 ### Windows
 将[配置文件](#常用配置文件)命名为config.yaml，修改proxy-providers的url为订阅地址，放在`C:\Users\Admin\.config\mihomo`目录中,运行mihomo.exe
-### Docker
+### DockerCompose
 ```yaml
-# DockerCompose部署
 services:
   mihomo:
     container_name: mihomo
