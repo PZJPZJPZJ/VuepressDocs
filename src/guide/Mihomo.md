@@ -22,13 +22,13 @@ services:
 
 将[配置文件](#常用配置文件)命名为config.yaml，修改proxy-providers的url为订阅地址，放在`/root/.config/mihomo`目录中
 ## 连接方式
-### HTTP/HTTPS：应用级TCP代理
+### HTTP/HTTPS:应用级TCP代理
 - 仅遵循HTTP代理应用可用
 
-### Socks：应用级全局代理
+### Socks:应用级全局代理
 - 仅可连接Socks应用可用
 
-### Redir：端口转发模式 TCP
+### Redir:端口转发模式 TCP
 ```shell
 iptables -t nat -N CLASH
 iptables -t nat -A CLASH -d 0.0.0.0/8 -j RETURN
@@ -44,7 +44,7 @@ iptables -t nat -A CLASH -p tcp -j REDIRECT --to-ports 7892
 iptables -t nat -A PREROUTING -p tcp -j CLASH
 ```
 
-### Tproxy：透明网关模式 TCP/UDP
+### Tproxy:透明网关模式 TCP/UDP
 Linux 劫持网络数据包流量转发到 tproxy 端口
 ```shell
 # 将所有进入本机的 tcp/udp 数据包交给 tproxy
@@ -109,9 +109,19 @@ ip6tables -t mangle -D PREROUTING -j CLASH6_LAN
 ip6tables -t mangle -F CLASH6_LAN
 ip6tables -t mangle -X CLASH6_LAN
 ```
-### TUN：网卡模式 旁路网关模式
-- 当Linux宿主机直接运行Mihomo，或Docker成功启用privileged特权模式，宿主系统会创建TUN网卡，自动识别出口网卡并拦截流量至Mihomo
-- 当Windows以管理员权限运行Mihomo，系统会创建TUN网卡，自动代理本机所有流量
+### TUN:网卡模式|旁路网关模式
+#### Linux
+- 宿主机直接运行Mihomo，或Docker成功启用privileged特权模式，宿主系统会创建TUN网卡，自动识别出口网卡并拦截流量至Mihomo
+#### Windows
+- 临时启动
+  1. 以管理员权限运行Mihomo，系统会创建TUN网卡，自动代理本机所有流量
+- 计划任务自启动
+  1. 此电脑右键>管理>计划任务程序>创建任务
+  2. 常规：更改用户或组>输入SYSTEM>检查名称>确定
+  3. 常规：勾选使用最高权限运行
+  4. 触发器：新建>选择登录时
+  5. 操作：新建>程序或脚本选择`mihomo.exe`>添加参数`-d C:\Users\Admin\.config\mihomo`根目录
+  6. 保存任务即可
 
 ## 常用配置文件
 ```yaml

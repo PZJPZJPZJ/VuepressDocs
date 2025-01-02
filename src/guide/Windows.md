@@ -41,7 +41,7 @@ x64
 ```
 ed2k://|file|cn_windows_8.1_enterprise_with_update_x64_dvd_6050374.iso|4317065216|AC8215A13817CC0EC4EA42E5C92E88B7|/
 ```
-### Windows 10
+### [Windows 10](https://www.microsoft.com/zh-cn/software-download/windows10)
 x86
 ```
 magnet:?xt=urn:btih:9aa435b8c71fa2a85a3df83d5b33e385727ae5d5&dn=zh-cn_windows_10_consumer_editions_version_22h2_updated_oct_2024_x86_dvd_d0cfb2e9.iso&xl=5049681920
@@ -54,7 +54,7 @@ arm64
 ```
 magnet:?xt=urn:btih:1254374ee4000b9e8fed508fe2fdcdd8f49c2161&dn=SW_DVD9_Win_Pro_10_22H2.3_64ARM_ChnSimp_Pro_Ent_EDU_N_MLF_X23-36949.ISO&xl=5333610496
 ```
-### Windows 11
+### [Windows 11](https://www.microsoft.com/zh-cn/software-download/windows11)
 x64
 ```
 magnet:?xt=urn:btih:2fc6fc24f7d56d1def32ae0334d2df0cd3b855ea&dn=zh-cn_windows_11_consumer_editions_version_24h2_x64_dvd_bfc0d79b.iso&xl=5829044224

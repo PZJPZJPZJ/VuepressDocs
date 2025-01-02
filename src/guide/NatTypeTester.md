@@ -1,6 +1,6 @@
 # NatTypeTester:网络地址转换类型
 ## 下载地址
-- https://github.com/HMBSbige/NatTypeTester
+- <https://github.com/HMBSbige/NatTypeTester>
 
 ## 结果说明
 ### 开放互联网
