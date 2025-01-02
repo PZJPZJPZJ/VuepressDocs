@@ -120,10 +120,10 @@ ip6tables -t mangle -X CLASH6_LAN
   2. 常规：更改用户或组>输入SYSTEM>检查名称>确定
   3. 常规：勾选使用最高权限运行
   4. 触发器：新建>选择登录时
-  5. 操作：新建>程序或脚本选择`mihomo.exe`>添加参数`-d C:\Users\Admin\.config\mihomo`根目录
+  5. 操作：新建>程序或脚本选择`mihomo.exe`>添加参数`-d C:\Users\Admin\.config\mihomo`>确定
   6. 保存任务即可
 
-## 常用配置文件
+## [常用配置文件](https://wiki.metacubex.one/)
 ```yaml
 port: 7890
 socks-port: 7891
@@ -311,7 +311,7 @@ rules:
   - GEOIP,CN,DIRECT
   - MATCH,默认
 ```
-## 配置文件示例
+## [配置文件示例](https://github.com/MetaCubeX/mihomo/blob/Alpha/docs/config.yaml)
 ```yaml
 # port: 7890 # HTTP(S) 代理服务器端口
 # socks-port: 7891 # SOCKS5 代理端口

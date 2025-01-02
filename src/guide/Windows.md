@@ -112,9 +112,9 @@ magnet:?xt=urn:btih:7aa30070e35c2e38491a7f7addb014623818f2e5&dn=zh-cn_windows_11
 ```shell
 # 新样式(Win11)
 reg delete "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /va /f
-tskill explorer
 # 旧样式(Win10)
 reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+# 修改结束后重启资源管理器
 tskill explorer
 ```
 ### 恢复睡眠功能(管理员权限)
@@ -127,7 +127,12 @@ rd /s /Q "C:\ProgramData\Microsoft\Windows Defender\Scans\History\Service\Detect
 ```
 ### 删除聚焦桌面图标(管理员权限)
 ```shell
+# 关闭图标
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v {2CC5CA98-6485-489A-920E-B3E88A6CCCE3} /t REG_DWORD /d 1 /f
+# 开启图标
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v {2CC5CA98-6485-489A-920E-B3E88A6CCCE3} /t REG_DWORD /d 0 /f
+# 修改结束后重启资源管理器
+tskill explorer
 ```
 ### 删除图标缓存
 ```shell
